@@ -33,6 +33,9 @@ def read_root():
 def health():
     return {"status": "ok"}
 
+@app.get("/about")
+def about():
+    return {"project": "Study Tasks API"}
 
 @app.get("/version")
 def version():
