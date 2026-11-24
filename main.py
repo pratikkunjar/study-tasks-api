@@ -34,6 +34,11 @@ def health():
     return {"status": "ok"}
 
 
+@app.get("/version")
+def version():
+    return {"version": "1.0.0"}
+
+
 @app.post("/tasks", response_model=TaskRead, status_code=status.HTTP_201_CREATED, tags=["tasks"])
 def create_task(task_in: TaskCreate, session: SessionDep):
     task = Task.model_validate(task_in)
@@ -59,7 +64,9 @@ def list_tasks(
         statement = statement.where(Task.priority == priority)
     if search:
         statement = statement.where(col(Task.title).contains(search))
-    statement = statement.order_by(col(Task.priority).desc(), col(Task.id)).offset(offset).limit(limit)
+    statement = statement.order_by(
+        col(Task.priority).desc(), col(Task.id)
+    ).offset(offset).limit(limit)
     return session.exec(statement).all()
 
 
