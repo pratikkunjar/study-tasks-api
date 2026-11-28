@@ -107,6 +107,7 @@ FastAPI automatically generates interactive API documentation.
 |---|---|---|
 | GET | `/` | Welcome message |
 | GET | `/health` | Check API health |
+| GET | `/about` | Get project information |
 | GET | `/version` | Get API version |
 | POST | `/tasks` | Create a new task |
 | GET | `/tasks` | Retrieve all tasks |
